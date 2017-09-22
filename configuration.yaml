@@ -1,0 +1,100 @@
+# Home Assistant Setup
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: !secret home_latitude
+  longitude: !secret home_longitude
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 530
+  # metric for Metric, imperial for Imperial
+  unit_system: imperial
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: !secret home_time_zone
+  # Customization file
+  customize: !include customize.yaml
+# Group File Include
+group: !include groups.yaml
+# Automation File Include
+automation: !include automations.yaml
+# Script File Include
+script: !include scripts.yaml
+# Show links to resources in log and frontend
+introduction:
+# Enables the frontend
+frontend:
+# Configurator Panel on the Frontend
+# panel_iframe:
+#   configurator:
+#     title: Configurator
+#     icon: mdi:wrench
+#     url: !secret host_address
+# Device tracking
+device_tracker: !include device_tracking.yaml
+# Enables configuration UI
+config:
+# Python scripts
+python_script:
+# Binary Sensors On Raspberry Pi (Digital Input Read)
+binary_sensor: !include binary_sensors.yaml
+# Arduino Mapped to ttyACM*
+#arduino:
+#  port: /dev/ttyACM0
+# Switch File Include
+switch: !include switches.yaml
+# Sensors
+sensor: !include sensors.yaml
+# Media Devices
+media_player: !include media_players.yaml
+# Web Encryption Setup
+http:
+  api_password: !secret http_password
+# IP Cameras
+camera: !include cameras.yaml
+# Checks for available updates
+updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+  # include_used_components: true
+  # Note: This component will send some information about your system to
+  # the developers to assist with development of Home Assistant.
+  # For more information, please see:
+  # https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+# Discover some devices automatically
+discovery:
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+# Enables support for tracking state changes over time
+history:
+# View all events in a logbook
+logbook:
+# Track the sun
+sun:
+# Honeywell Lyric Control
+climate: !include climatecontrol.yaml
+# Text to speech
+tts:
+  - platform: google
+# IFTTT Key for WebHooks
+ifttt:
+  key: !secret ifttt_key
+
+# Shell commands
+shell_command:
+  send_telnet_command: python /home/homeassistant/.homeassistant/python_scripts/send_telnet_command.py {{command}} {{host}} {{port}}
+  set_volume_level: python /home/homeassistant/.homeassistant/python_scripts/set_volume_level.py {{target_volume}} {{host}} {{port}}
+
+# Volume Input Slider
+input_slider:
+  stereo_volume_slider:
+    name: Stereo Volume
+    initial: 25
+    min: 0
+    max: 70
+    step: 1
+# MQTT Broker
+mqtt: # Default Settings Username = homeassistant and Password = !secret api_password
+  broker: !secret host_address
+  port: !secret mqtt_port
+  client_id: home-assistant-1
+  username: !secret mqtt_username
+  password: !secret mqtt_password

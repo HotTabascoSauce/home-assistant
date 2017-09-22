@@ -1,0 +1,12 @@
+# Kodi
+- platform: kodi
+  host: !secret lr_kodi
+  name: Living Room Kodi
+  username: !secret kodi_username
+  password: !secret kodi_password
+
+- platform: kodi
+  host: !secret br_kodi
+  name: Bed Room Kodi
+  username: !secret kodi_username
+  password: !secret kodi_password

@@ -1,0 +1,150 @@
+# arduino_led_blink:
+#     alias: "Make the LED Blink 3 Times"
+#     sequence:
+#         -   service: switch.turn_on
+#             data:
+#                 entity_id: switch.led
+#         -   delay:
+#                 seconds: 0.5
+#         -   service: switch.turn_off
+#             data:
+#                 entity_id: switch.led
+#         -   delay:
+#                 seconds: 0.5
+#         -   service: switch.turn_on
+#             data:
+#                 entity_id: switch.led
+#         -   delay:
+#                 seconds: 0.5
+#         -   service: switch.turn_off
+#             data:
+#                 entity_id: switch.led
+#         -   delay:
+#                 seconds: 0.5
+#         -   service: switch.turn_on
+#             data:
+#                 entity_id: switch.led
+#         -   delay:
+#                 seconds: 0.5
+#         -   service: switch.turn_off
+#             data:
+#                 entity_id: switch.led
+#         -   delay:
+#                 seconds: 0.5
+
+#### Stereo Control with Telnet in Python ####
+# Power controls
+power_on:
+  alias: "Power On"
+  sequence:
+    - service: shell_command.send_telnet_command
+      data:
+        command: "PO"
+        host: !secret stereo_ip
+        port: !secret stereo_port
+power_off:
+  alias: "Power Off"
+  sequence:
+    - service: shell_command.send_telnet_command
+      data:
+        command: "PF"
+        host: !secret stereo_ip
+        port: !secret stereo_port
+# Volume Contols
+volume_up:
+  alias: "Volume Up"
+  sequence:
+    - service: shell_command.send_telnet_command
+      data:
+        command: "VU"
+        host: !secret stereo_ip
+        port: !secret stereo_port
+volume_down:
+  alias: "Volume Down"
+  sequence:
+    - service: shell_command.send_telnet_command
+      data:
+        command: "VD"
+        host: !secret stereo_ip
+        port: !secret stereo_port
+mute_on:
+  alias: "Mute On"
+  sequence:
+    - service: shell_command.send_telnet_command
+      data:
+        command: "MO"
+        host: !secret stereo_ip
+        port: !secret stereo_port
+mute_off:
+  alias: "Mute Off"
+  sequence:
+    - service: shell_command.send_telnet_command
+      data:
+        command: "MF"
+        host: !secret stereo_ip
+        port: !secret stereo_port
+# Input Controls
+input_tv:
+  alias: "TV"
+  sequence:
+    - service: shell_command.send_telnet_command
+      data:
+        command: "05FN"
+        host: !secret stereo_ip
+        port: !secret stereo_port
+input_dvd:
+  alias: "Kodi"
+  sequence:
+    - service: shell_command.send_telnet_command
+      data:
+        command: "04FN"
+        host: !secret stereo_ip
+        port: !secret stereo_port
+input_internet_radio:
+  alias: "Pandora"
+  sequence:
+    - service: shell_command.send_telnet_command
+      data:
+        command: "41FN"
+        host: !secret stereo_ip
+        port: !secret stereo_port
+input_game:
+  alias: "Laptop"
+  sequence:
+    - service: shell_command.send_telnet_command
+      data:
+        command: "49FN"
+        host: !secret stereo_ip
+        port: !secret stereo_port
+input_bd:
+  alias: "Chromecast"
+  sequence:
+    - service: shell_command.send_telnet_command
+      data:
+        command: "25FN"
+        host: !secret stereo_ip
+        port: !secret stereo_port
+input_ipod_usb:
+  alias: "iPod/USB"
+  sequence:
+    - service: shell_command.send_telnet_command
+      data:
+        command: "17FN"
+        host: !secret stereo_ip
+        port: !secret stereo_port
+input_tuner:
+  alias: "Tuner"
+  sequence:
+    - service: shell_command.send_telnet_command
+      data:
+        command: "02FN"
+        host: !secret stereo_ip
+        port: !secret stereo_port
+input_cycle:
+  alias: "Cycle Input"
+  sequence:
+    - service: shell_command.send_telnet_command
+      data:
+        command: "FU"
+        host: !secret stereo_ip
+        port: !secret stereo_port

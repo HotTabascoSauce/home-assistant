@@ -1,0 +1,6 @@
+# Raspberry Pi GPIO
+# - platform: rpi_gpio
+#   ports:
+#     24: GPIO24In
+#     25: GPIO25In
+#     26: LIGHT

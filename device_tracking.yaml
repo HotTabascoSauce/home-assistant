@@ -1,0 +1,4 @@
+- platform: ddwrt
+  host: !secret ddwrt_ap
+  username: !secret ddwrt_username
+  password: !secret ddwrt_password

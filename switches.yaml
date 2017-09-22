@@ -1,0 +1,14 @@
+# Raspberry Pi Output Pin Control
+- platform: rpi_gpio
+  ports:
+    2: GPIO2Out
+    3: GPIO3Out
+    4: GPIO4Out
+#Arduino Output Pin Control
+# - platform: arduino
+#   pins:
+#       13:
+#           name: led
+#           initial: false
+#           negate: false
+#

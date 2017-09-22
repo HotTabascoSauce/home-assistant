@@ -1,0 +1,34 @@
+# Automatically switch to Chromecast when it begins playing
+- id: switch_to_chromecast
+  alias: Switch to Chromecast
+  initial_state: 'on'
+  trigger:
+    platform: state
+    entity_id: media_player.tv
+    to: 'playing'
+  action:
+    - service: script.power_on
+    - service: script.input_bd
+# Automatically switch to Kodi when it begins playing
+- id: switch_to_Kodi
+  alias: Switch to Kodi
+  initial_state: 'on'
+  trigger:
+    platform: state
+    entity_id: media_player.living_room_kodi
+    to: 'playing'
+  action:
+    - service: script.power_on
+    - service: script.input_dvd
+# Adjust Stereo Volume with Slider
+- id: adjust_stereo_volume
+  alias: Set Stereo Volume
+  trigger:
+    platform: state
+    entity_id: input_slider.stereo_volume_slider
+  action:
+    - service: shell_command.set_volume_level
+      data_template:
+        target_volume: '{{states.input_slider.stereo_volume_slider.state | int}}'
+        host: !secret stereo_ip
+        port: !secret stereo_port

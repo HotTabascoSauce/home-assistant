@@ -1,0 +1,5 @@
+# - entity_id: script.volume_up
+#     icon: mdi:plus
+#
+# - entity_id: script.volume_down
+#     icon: mdi:minus
