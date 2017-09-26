@@ -1,5 +1,48 @@
-# - entity_id: script.volume_up
-#     icon: mdi:plus
-#
-# - entity_id: script.volume_down
-#     icon: mdi:minus
+# Icon Changes
+script.volume_up:
+  icon: mdi:volume-plus
+script.volume_down:
+  icon: mdi:volume-minus
+script.input_bd:
+  icon: mdi:google-chrome
+script.input_dvd:
+  icon: mdi:kodi
+script.input_game:
+  icon: mdi:google-controller
+script.input_tv:
+  icon: mdi:television-guide
+script.input_ipod_usb:
+  icon: mdi:usb
+script.input_internet_radio:
+  icon: mdi:pandora
+script.input_tuner:
+  icon: mdi:radio
+script.input_cycle:
+  icon: mdi:google-circles-group
+script.power_on:
+  icon: mdi:power
+script.power_off:
+  icon: mdi:power-settings
+script.mute_on:
+  icon: mdi:volume-off
+script.mute_off:
+  icon: mdi:volume-mute
+input_slider.stereo_volume_slider:
+  icon: mdi:volume-high
+switch.bed_room_light:
+  icon: mdi:lightbulb
+switch.living_room_light:
+  icon: mdi:lightbulb
+automation.set_stereo_volume:
+  icon: mdi:volume-medium
+automation.switch_to_chromecast:
+  icon: mdi:google-chrome
+automation.switch_to_kodi:
+  icon: mdi:kodi
+# Group Orders
+group.power_control:
+  order: "1"
+group.volume_control:
+  order: "2"
+group.input_control:
+  order: "3"

@@ -1,37 +1,3 @@
-# arduino_led_blink:
-#     alias: "Make the LED Blink 3 Times"
-#     sequence:
-#         -   service: switch.turn_on
-#             data:
-#                 entity_id: switch.led
-#         -   delay:
-#                 seconds: 0.5
-#         -   service: switch.turn_off
-#             data:
-#                 entity_id: switch.led
-#         -   delay:
-#                 seconds: 0.5
-#         -   service: switch.turn_on
-#             data:
-#                 entity_id: switch.led
-#         -   delay:
-#                 seconds: 0.5
-#         -   service: switch.turn_off
-#             data:
-#                 entity_id: switch.led
-#         -   delay:
-#                 seconds: 0.5
-#         -   service: switch.turn_on
-#             data:
-#                 entity_id: switch.led
-#         -   delay:
-#                 seconds: 0.5
-#         -   service: switch.turn_off
-#             data:
-#                 entity_id: switch.led
-#         -   delay:
-#                 seconds: 0.5
-
 #### Stereo Control with Telnet in Python ####
 # Power controls
 power_on:

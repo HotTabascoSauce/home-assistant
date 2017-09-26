@@ -1,0 +1,82 @@
+# Living Room Tab Group
+living_room:
+  name: Livingroom
+  view: yes
+  icon: mdi:television-classic
+  entities:
+    - media_player.living_room_kodi
+    - media_player.tv_chromecast
+    - switch.living_room_light
+    - camera.rooted_tablet
+    - group.power_control
+    - group.volume_control
+    - group.input_control
+# Bed Room Tab Group
+bed_room:
+  name: Bedroom
+  view: yes
+  icon: mdi:hotel
+  entities:
+    - media_player.bed_room_kodi
+    - switch.bed_room_light
+# Stereo Controls Tab Group
+stereo_control:
+  name: Stereo Control
+  view: yes
+  icon: mdi:boombox
+  entities:
+    - group.power_control
+    - group.volume_control
+    - group.input_control
+# Automations Tab Group
+automation_cotrol:
+  name: Automation Control
+  view: yes
+  icon: mdi:home-assistant
+  entities:
+    - automation.set_stereo_volume
+    - automation.switch_to_chromecast
+    - automation.switch_to_kodi
+
+
+# Media Players Group
+all_media_players:
+  name: Media Players
+  view: no
+  icon: mdi:speaker
+  entities:
+    - media_player.living_room_kodi
+    - media_player.bed_room_kodi
+    - media_player.tv_chromecast
+    - media_player.kitchen_home
+
+# Stereo Volume Contols
+volume_control:
+  name: Volume Control
+  view: no
+  entities:
+    - script.volume_up
+    - script.volume_down
+    - input_slider.stereo_volume_slider
+    - script.mute_on
+    - script.mute_off
+# Stereo Power Contols
+power_control:
+  name: Power Control
+  view: no
+  entities:
+    - script.power_on
+    - script.power_off
+# Stereo Input Contols
+input_control:
+  name: Input Control
+  view: no
+  entities:
+    - script.input_bd
+    - script.input_dvd
+    - script.input_game
+    - script.input_tv
+    - script.input_internet_radio
+    - script.input_ipod_usb
+    - script.input_tuner
+    - script.input_cycle

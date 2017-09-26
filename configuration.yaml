@@ -20,7 +20,7 @@ automation: !include automations.yaml
 # Script File Include
 script: !include scripts.yaml
 # Show links to resources in log and frontend
-introduction:
+# introduction:
 # Enables the frontend
 frontend:
 # Configurator Panel on the Frontend
@@ -93,8 +93,13 @@ input_slider:
     step: 1
 # MQTT Broker
 mqtt: # Default Settings Username = homeassistant and Password = !secret api_password
-  broker: !secret host_address
+  broker: !secret host_address_work
   port: !secret mqtt_port
-  client_id: home-assistant-1
   username: !secret mqtt_username
   password: !secret mqtt_password
+
+# Emulated Hue for Google Home
+emulated_hue:
+  host_ip: !secret host_address
+  listen_port: 80
+  expose_by_default: true
