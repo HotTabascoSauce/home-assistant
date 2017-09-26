@@ -10,7 +10,7 @@ Home Assistant on [Hassbian for Raspberry Pi](https://home-assistant.io/docs/ins
 |Cyborg Chicken	|Particle OTA Flash	|Particle Photon	|IOT Board|
 |Donatello	|Ubuntu 17.04 GNOME	|Dell E5470	|Computer|
 |Kitchen Home	|Google Assistant	|Google Home|	Voice Assistant|
-|Home Assistant	|Hass.IO	|Raspberry Pi 3	|Server|
+|Home Assistant	|Hassbian	|Raspberry Pi 3	|Server|
 |iPhone	|iOS11	|Apple iPhone 7	|Mobile|
 |iSmartAlarm|	iSmartAlarm|	iSmartAlarm|	Security|
 |iSmartCamera|	iSmartAlarm	|iSmartAlarm	|Security|
