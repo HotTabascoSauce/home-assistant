@@ -123,7 +123,7 @@ input_boolean:
 
 # MQTT Broker
 mqtt: # Default Settings Username = homeassistant and Password = !secret api_password
-  broker: !secret host_address_work
+  broker: !secret host_address
   port: !secret mqtt_port
   username: !secret mqtt_username
   password: !secret mqtt_password
@@ -133,3 +133,14 @@ emulated_hue:
   host_ip: !secret host_address
   listen_port: 80
   expose_by_default: true
+
+# Kodi Remote
+panel_iframe:
+  lr_kodi:
+    title: 'Living Room Kodi'
+    url: !secret lr_kodi_remote
+    icon: mdi:kodi
+  br_kodi:
+    title: 'Bedroom Kodi'
+    url: !secret br_kodi_remote
+    icon: mdi:kodi
