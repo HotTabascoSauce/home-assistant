@@ -70,7 +70,10 @@ logbook:
 # Track the sun
 sun:
 # Honeywell Lyric Control
-climate: !include climatecontrol.yaml
+# climate: !include climatecontrol.yaml
+lyric:
+  client_id: !secret honeywell_client_id
+  client_secret: !secret honeywell_client_secret
 # Text to speech
 tts:
   - platform: google

@@ -39,6 +39,11 @@ automation.switch_to_chromecast:
   icon: mdi:google-chrome
 automation.switch_to_kodi:
   icon: mdi:kodi
+automation.turn_off_the_light_when_a_movie_starts_playing:
+  icon: mdi:lightbulb-outline
+automation.turn_on_the_light_after_a_movie:
+  icon: mdi:lightbulb-on
+
 # Group Orders
 group.power_control:
   order: "1"

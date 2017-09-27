@@ -5,7 +5,7 @@ living_room:
   icon: mdi:television-classic
   entities:
     - media_player.living_room_kodi
-    - media_player.tv_chromecast
+    - media_player.tv
     - switch.living_room_light
     - camera.rooted_tablet
     - group.power_control
@@ -37,6 +37,9 @@ automation_cotrol:
     - automation.set_stereo_volume
     - automation.switch_to_chromecast
     - automation.switch_to_kodi
+    - automation.turn_off_the_light_when_a_movie_starts_playing
+    - automation.turn_on_the_light_after_a_movie
+
 
 
 # Media Players Group

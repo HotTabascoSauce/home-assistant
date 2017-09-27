@@ -13,7 +13,7 @@
 
 - platform: cast
   host: !secret chromecast_ip
-  name: TV Chromecast
+  name: tv
 
 - platform: cast
   host: !secret google_home_ip

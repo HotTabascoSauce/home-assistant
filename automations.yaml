@@ -32,3 +32,37 @@
         target_volume: '{{states.input_slider.stereo_volume_slider.state | int}}'
         host: !secret stereo_ip
         port: !secret stereo_port
+# Turn off the light when watching a Movie
+- id: lights_out_movie
+  alias: Turn Off the Light when a Movie Starts Playing
+  initial_state: 'on'
+  trigger:
+    - platform: state
+      entity_id: media_player.living_room_kodi
+      to: 'playing'
+    - platform: state
+      entity_id: media_player.tv
+      to: 'playing'
+  condition:
+    condition: time
+    after: '18:00:00'
+  action:
+    - service: switch.turn_off
+      entity_id: switch.living_room_light
+# Turn On the lights when the movie is over or stopped
+- id: lights_on_movie
+  alias: Turn On the Light after a Movie
+  initial_state: 'on'
+  trigger:
+    - platform: state
+      entity_id: media_player.living_room_kodi
+      from: 'playing'
+    - platform: state
+      entity_id: media_player.tv
+      from: 'playing'
+  condition:
+    condition: time
+    after: '18:00:00'
+  action:
+    - service: switch.turn_on
+      entity_id: switch.living_room_light
