@@ -66,3 +66,89 @@
   action:
     - service: switch.turn_on
       entity_id: switch.living_room_light
+
+
+### Home Security Control ###
+# Disarm Security
+- id: set_to_disarm
+  alias: Disarm iSmartAlarm
+  initial_state: 'on'
+  trigger:
+    - platform: state
+      entity_id: device_tracker.apple_iphone
+      to: 'home'
+    - platform: state
+      entity_id: device_tracker.google_pixel
+      to: 'home'
+    - platform: state
+      entity_id: input_boolean.alarm_set_disarm
+      to: 'on'
+  action:
+    - service: ifttt.trigger
+      data: {"event": "set_disarm_mode"}
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.alarm_set_disarm
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.alarm_set_arm
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.alarm_set_home
+# Arm Security
+- id: set_to_arm
+  alias: Arm iSmartAlarm
+  initial_state: 'on'
+  trigger:
+    - platform: state
+      entity_id: device_tracker.apple_iphone
+      to: 'away'
+    - platform: state
+      entity_id: device_tracker.google_pixel
+      to: 'away'
+    - platform: state
+      entity_id: input_boolean.alarm_set_disarm
+      to: 'on'
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: device_tracker.apple_iphone
+      state: 'away'
+    - condition: state
+      entity_id: device_tracker.google_pixel
+      state: 'away'
+  action:
+    - service: ifttt.trigger
+      data: {"event": "set_disarm_mode"}
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.alarm_set_disarm
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.alarm_set_arm
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.alarm_set_home
+# Home Mode Security
+- id: set_to_home
+  alias: Home iSmartAlarm
+  initial_state: 'on'
+  trigger:
+    - platform: time
+      at: '22:30:00'
+    - platform: state
+      entity_id: input_boolean.alarm_set_home
+      to: 'on'
+  condition:
+    condition: or
+    conditions:
+    - condition: state
+      entity_id: device_tracker.apple_iphone
+      state: 'home'
+    - condition: state
+      entity_id: device_tracker.google_pixel
+      state: 'home'
+  action:
+    - service: ifttt.trigger
+      data: {"event": "set_disarm_mode"}
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.alarm_set_disarm
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.alarm_set_arm
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.alarm_set_home

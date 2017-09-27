@@ -13,44 +13,47 @@ homeassistant:
   time_zone: !secret home_time_zone
   # Customization file
   customize: !include customize.yaml
+
 # Group File Include
 group: !include groups.yaml
+
 # Automation File Include
 automation: !include automations.yaml
+
 # Script File Include
 script: !include scripts.yaml
-# Show links to resources in log and frontend
-# introduction:
+
 # Enables the frontend
 frontend:
-# Configurator Panel on the Frontend
-# panel_iframe:
-#   configurator:
-#     title: Configurator
-#     icon: mdi:wrench
-#     url: !secret host_address
+
 # Device tracking
 device_tracker: !include device_tracking.yaml
+
 # Enables configuration UI
 config:
+
 # Python scripts
 python_script:
+
 # Binary Sensors On Raspberry Pi (Digital Input Read)
 binary_sensor: !include binary_sensors.yaml
-# Arduino Mapped to ttyACM*
-#arduino:
-#  port: /dev/ttyACM0
+
 # Switch File Include
 switch: !include switches.yaml
+
 # Sensors
 sensor: !include sensors.yaml
+
 # Media Devices
 media_player: !include media_players.yaml
+
 # Web Encryption Setup
 http:
   api_password: !secret http_password
+
 # IP Cameras
 camera: !include cameras.yaml
+
 # Checks for available updates
 updater:
   # Optional, allows Home Assistant developers to focus on popular components.
@@ -59,24 +62,31 @@ updater:
   # the developers to assist with development of Home Assistant.
   # For more information, please see:
   # https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+
 # Discover some devices automatically
 discovery:
+
 # Allows you to issue voice commands from the frontend in enabled browsers
 conversation:
+
 # Enables support for tracking state changes over time
 history:
+
 # View all events in a logbook
 logbook:
+
 # Track the sun
 sun:
+
 # Honeywell Lyric Control
-# climate: !include climatecontrol.yaml
 lyric:
   client_id: !secret honeywell_client_id
   client_secret: !secret honeywell_client_secret
+
 # Text to speech
 tts:
   - platform: google
+
 # IFTTT Key for WebHooks
 ifttt:
   key: !secret ifttt_key
@@ -94,6 +104,23 @@ input_slider:
     min: 0
     max: 70
     step: 1
+
+# Input Booleans
+input_boolean:
+  alarm_set_disarm:
+    name: Alarm Set to Disarm
+    initial: off
+    icon: mdi:alarm-off
+  alarm_set_arm:
+    name: Alarm Set to Arm
+    initial: off
+    icon: mdi:alarm-plus
+  alarm_set_home:
+    name: Alarm Set to Home
+    initial: off
+    icon: mdi:alarm-check
+
+
 # MQTT Broker
 mqtt: # Default Settings Username = homeassistant and Password = !secret api_password
   broker: !secret host_address_work

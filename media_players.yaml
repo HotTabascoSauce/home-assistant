@@ -10,11 +10,11 @@
   name: Bed Room Kodi
   username: !secret kodi_username
   password: !secret kodi_password
-
+# Chromecast
 - platform: cast
   host: !secret chromecast_ip
   name: tv
-
+# Google Home
 - platform: cast
   host: !secret google_home_ip
-  name: Kitchen Home
+  name: kitchen_home

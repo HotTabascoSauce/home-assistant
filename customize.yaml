@@ -43,6 +43,12 @@ automation.turn_off_the_light_when_a_movie_starts_playing:
   icon: mdi:lightbulb-outline
 automation.turn_on_the_light_after_a_movie:
   icon: mdi:lightbulb-on
+automation.disarm_ismartalarm:
+  icon: mdi:circle-outline
+automation.arm_ismartalarm:
+  icon: mdi:checkbox-marked-circle
+automation.home_ismartalarm:
+  icon: mdi:home-circle
 
 # Group Orders
 group.power_control:
