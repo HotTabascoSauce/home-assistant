@@ -14,3 +14,35 @@
   payload_on: "ON"
   payload_off: "OFF"
   retain: true
+#
+- platform: mqtt
+  name: "Wax Melter"
+  command_topic: "cmnd/sonoff_switch_3/POWER"
+  payload_on: "ON"
+  state_topic: "stat/sonoff_switch_3/POWER"
+  payload_off: "OFF"
+  retain: true
+#
+- platform: mqtt
+  name: "3D Printer"
+  command_topic: "cmnd/sonoff_switch_4/POWER"
+  payload_on: "ON"
+  state_topic: "stat/sonoff_switch_4/POWER"
+  payload_off: "OFF"
+  retain: true
+#
+- platform: mqtt
+  name: "TV Lights"
+  command_topic: "cmnd/sonoff_switch_5/POWER"
+  payload_on: "ON"
+  state_topic: "stat/sonoff_switch_5/POWER"
+  payload_off: "OFF"
+  retain: true
+#
+- platform: mqtt
+  name: "Printer Lights"
+  command_topic: "cmnd/sonoff_switch_6/POWER"
+  payload_on: "ON"
+  state_topic: "stat/sonoff_switch_6/POWER"
+  payload_off: "OFF"
+  retain: true

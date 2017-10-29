@@ -1,0 +1,3 @@
+send_telnet_command: python /home/homeassistant/.homeassistant/python_scripts/send_telnet_command.py {{command}} {{host}} {{port}}
+set_volume_level: python /home/homeassistant/.homeassistant/python_scripts/set_volume_level.py {{target_volume}} {{host}} {{port}}
+ir_remote: irsend {{send_count}} {{remote}} {{key}}

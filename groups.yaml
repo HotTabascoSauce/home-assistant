@@ -7,9 +7,12 @@ living_room:
     - media_player.living_room_kodi
     - media_player.tv
     - switch.living_room_light
+    - switch.wax_melter
+    - switch.tv_lights
     - group.power_control
     - group.volume_control
     - group.input_control
+    - group.tv_control
 
 # Bed Room Tab Group
 bed_room:
@@ -56,6 +59,31 @@ automation_cotrol:
     - automation.arm_ismartalarm
     - automation.home_ismartalarm
 
+# OctoPrint Tab Group
+octoprint_control:
+  name: OctoPrint
+  view: yes
+  icon: mdi:printer-3d
+  entities:
+    - camera.octopi_camera
+    - group.octoprint_info
+octoprint_info:
+  name: OctoPi
+  view: no
+  icon: mdi:printer-3d
+  entities:
+    - switch.printer_lights
+    - switch.3d_printer
+    - sensor.hotend
+    - sensor.hotend_target
+    - sensor.bed
+    - sensor.bed_target
+    - sensor.octoprint_current_state
+    - sensor.octoprint_job_percentage
+    - sensor.time_remainng
+    - sensor.time_elapsed
+
+
 # Switches Group
 switch_control:
   name: Switch Control
@@ -63,6 +91,9 @@ switch_control:
   entities:
     - switch.living_room_light
     - switch.bed_room_light
+    - switch.wax_melter
+    - switch.tv_lights
+    - switch.printer_lights
 
 # iSmartAlarm Group
 ismartalarm_control:
@@ -98,7 +129,7 @@ volume_control:
   entities:
     - script.volume_up
     - script.volume_down
-    - input_slider.stereo_volume_slider
+  #  - input_slider.stereo_volume_slider
     - script.mute_on
     - script.mute_off
 # Stereo Power Contols
@@ -123,3 +154,13 @@ input_control:
     - script.input_ipod_usb
     - script.input_tuner
     - script.input_cycle
+# TV Controls
+tv_control:
+  name: TV Control
+  view: no
+  control: hidden
+  entities:
+    - script.tv_power
+    - script.tv_channel_up
+    - script.tv_channel_down
+    - script.tv_input

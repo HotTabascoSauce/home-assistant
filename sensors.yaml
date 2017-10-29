@@ -15,3 +15,35 @@
     - visibility
     - humidity
     - temperature
+# Octoprint
+- platform: octoprint
+  name: OctoPrint
+  monitored_conditions:
+    - Current State
+    - Job Percentage
+    - Temperatures
+    - 'Time Remaining'
+    - 'Time Elapsed'
+
+- platform: template
+  sensors:
+    hotend:
+     friendly_name: 'Hotend Actual'
+     value_template: "{{ ((states.sensor.octoprint_actual_tool0_temp.state | float-32) | float*(5/9)) | round(2) }} °C"
+    bed:
+     friendly_name: 'Bed Actual'
+     value_template: "{{ ((states.sensor.octoprint_actual_bed_temp.state | float-32) | float*(5/9)) | round(2) }} °C"
+    hotend_target:
+     friendly_name: 'Hotend Target'
+     value_template: "{{ ((states.sensor.octoprint_target_tool0_temp.state | float-32) | float*(5/9)) | round(2) }} °C"
+    bed_target:
+     friendly_name: 'Bed Target'
+     value_template: "{{ ((states.sensor.octoprint_target_bed_temp.state | float-32) | float*(5/9)) | round(2) }} °C"
+    time_remainng:
+      friendly_name: 'Time Remaining'
+      unit_of_measurement: 'hours'
+      value_template: "{{ states.sensor.octoprint_time_remaining.state |float / 3600 }}"
+    time_elapsed:
+      friendly_name: 'Time Elapsed'
+      unit_of_measurement: 'hours'
+      value_template: "{{ states.sensor.octoprint_time_elapsed.state |float / 3600 }}"

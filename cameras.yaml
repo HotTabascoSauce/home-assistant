@@ -2,3 +2,7 @@
   mjpeg_url: !secret camera_video_address
   still_image_url: !secret camera_still_address
   name: Rooted Tablet
+- platform: mjpeg
+  mjpeg_url: !secret octoprint_video_address
+  still_image_url: !secret octoprint_still_address
+  name: OctoPi Camera

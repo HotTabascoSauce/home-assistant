@@ -92,18 +92,15 @@ ifttt:
   key: !secret ifttt_key
 
 # Shell commands
-shell_command:
-  send_telnet_command: python /home/homeassistant/.homeassistant/python_scripts/send_telnet_command.py {{command}} {{host}} {{port}}
-  set_volume_level: python /home/homeassistant/.homeassistant/python_scripts/set_volume_level.py {{target_volume}} {{host}} {{port}}
-
+shell_command: !include shell_commands.yaml
 # Volume Input Slider
-input_slider:
-  stereo_volume_slider:
-    name: Stereo Volume
-    initial: 25
-    min: 0
-    max: 70
-    step: 1
+# input_slider:
+#   stereo_volume_slider:
+#     name: Stereo Volume
+#     initial: 25
+#     min: 0
+#     max: 70
+#     step: 1
 
 # Input Booleans
 input_boolean:
@@ -144,3 +141,13 @@ panel_iframe:
     title: 'Bedroom Kodi'
     url: !secret br_kodi_remote
     icon: mdi:kodi
+  octo_pi:
+    title: 'OctoPrint'
+    url: !secret octopi_url
+    icon: mdi:printer-3d
+# OctoPrint
+octoprint:
+  host: !secret octopi_host
+  api_key: !secret octopi_api
+  bed: true
+  number_of_tools: 1

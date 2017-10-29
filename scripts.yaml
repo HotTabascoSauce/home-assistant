@@ -114,3 +114,37 @@ input_cycle:
         command: "FU"
         host: !secret stereo_ip
         port: !secret stereo_port
+
+#### TV IR Controls ####
+tv_power:
+  alias: "TV Power"
+  sequence:
+    - service: shell_command.ir_remote
+      data:
+        send_count: SEND_ONCE
+        remote: SAMSUNGTV
+        key: KEY_POWER
+tv_input:
+  alias: "TV Input"
+  sequence:
+    - service: shell_command.ir_remote
+      data:
+        send_count: SEND_ONCE
+        remote: SAMSUNGTV
+        key: KEY_SELECT
+tv_channel_up:
+  alias: "Channel +"
+  sequence:
+    - service: shell_command.ir_remote
+      data:
+        send_count: SEND_ONCE
+        remote: SAMSUNGTV
+        key: KEY_CHANNELUP
+tv_channel_down:
+  alias: "Channel -"
+  sequence:
+    - service: shell_command.ir_remote
+      data:
+        send_count: SEND_ONCE
+        remote: SAMSUNGTV
+        key: KEY_CHANNELDOWN

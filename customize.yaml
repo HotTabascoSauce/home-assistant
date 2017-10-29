@@ -1,4 +1,5 @@
-# Icon Changes
+### Icon Changes ###
+# Scripts
 script.volume_up:
   icon: mdi:volume-plus
 script.volume_down:
@@ -27,12 +28,21 @@ script.mute_on:
   icon: mdi:volume-off
 script.mute_off:
   icon: mdi:volume-mute
+# Inputs
 input_slider.stereo_volume_slider:
   icon: mdi:volume-high
+# Switch
 switch.bed_room_light:
   icon: mdi:lightbulb
 switch.living_room_light:
   icon: mdi:lightbulb
+switch.tv_lights:
+  icon: mdi:led-strip
+switch.printer_lights:
+  icon: mdi:spotlight-beam
+switch.3d_printer:
+  icon: mdi:printer-3d
+  # Automations
 automation.set_stereo_volume:
   icon: mdi:volume-medium
 automation.switch_to_chromecast:
@@ -49,7 +59,25 @@ automation.arm_ismartalarm:
   icon: mdi:checkbox-marked-circle
 automation.home_ismartalarm:
   icon: mdi:home-circle
+# Sensors
+sensor.hotend:
+  icon: mdi:thermometer-lines
+sensor.hotend_target:
+  icon: mdi:thermometer
+sensor.bed:
+  icon: mdi:thermometer-lines
+sensor.bed_target:
+  icon: mdi:thermometer
+sensor.time_remainng:
+  icon: mdi:clock-end
+sensor.time_elapsed:
+  icon: mdi:clock-start
+sensor.octoprint_current_state:
+  icon: mdi:printer-3d
+sensor.octoprint_job_percentage:
+  icon: mdi:compare
 
+### Organization Order ###
 # Group Orders
 group.power_control:
   order: "1"

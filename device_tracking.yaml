@@ -4,3 +4,4 @@
   password: !secret ddwrt_password
   interval_seconds: 0:0:10
   considder_home: 0:03:00
+  track_new_devices: false
