@@ -42,8 +42,8 @@
     time_remainng:
       friendly_name: 'Time Remaining'
       unit_of_measurement: 'hours'
-      value_template: "{{ states.sensor.octoprint_time_remaining.state |float / 3600 }}"
+      value_template: "{{ (states.sensor.octoprint_time_remaining.state |float / 3600) | round(2) }}"
     time_elapsed:
       friendly_name: 'Time Elapsed'
       unit_of_measurement: 'hours'
-      value_template: "{{ states.sensor.octoprint_time_elapsed.state |float / 3600 }}"
+      value_template: "{{ (states.sensor.octoprint_time_elapsed.state |float / 3600) | round(2) }}"

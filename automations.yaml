@@ -67,6 +67,24 @@
     - service: switch.turn_on
       entity_id: switch.living_room_light
 
+# Shut down printer after completed printer
+- id: shut_printer_off
+  alias: Turn the Printer Off when Job Complete
+  initial_state: on
+  trigger:
+    - platform: state
+      entity_id: sensor.octoprint_current_state
+      from: 'Printing'
+      to: 'Operational'
+  condition:
+    - condition: numeric_state
+      entity_id: sensor.octoprint_job_percentage
+      above: 99
+  action:
+    - delay: 00:05:00
+    - service: switch.turn_off
+      entity_id: switch.3d_printer
+
 
 ### Home Security Control ###
 # Disarm Security

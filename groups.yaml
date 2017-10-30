@@ -32,6 +32,7 @@ stereo_control:
     - group.power_control
     - group.volume_control
     - group.input_control
+    - group.tv_control
 
 # Tab for Security and Climate
 home_control:
@@ -40,7 +41,7 @@ home_control:
   icon: mdi:home-automation
   entities:
     - group.ismartalarm_control
-    - climate.lyric
+    - climate.lyric_t5_thermostat
     - group.switch_control
     - camera.rooted_tablet
 
@@ -67,8 +68,10 @@ octoprint_control:
   entities:
     - camera.octopi_camera
     - group.octoprint_info
+
+# Octoprint Group
 octoprint_info:
-  name: OctoPi
+  name: OctoPrint
   view: no
   icon: mdi:printer-3d
   entities:
@@ -82,7 +85,6 @@ octoprint_info:
     - sensor.octoprint_job_percentage
     - sensor.time_remainng
     - sensor.time_elapsed
-
 
 # Switches Group
 switch_control:
@@ -119,6 +121,32 @@ all_media_players:
     - media_player.bed_room_kodi
     - media_player.tv_chromecast
     - media_player.kitchen_home
+
+# Weather Group
+weather_group:
+  name: Weather
+  view: no
+  icon: mdi:weather-lightening-rainy
+  entities:
+    - sensor.yweather_condition
+    - sensor.yweather_current
+    - sensor.yweather_humidity
+    - sensor.yweather_pressure
+    - sensor.yweather_temperature
+    - sensor.yweather_visibility
+    - sensor.yweather_wind_speed
+    - sun.sun
+
+# Device Tracking Group
+device_tracking_group:
+  name: Device Tracking
+  view: no
+  icon: mdi:account-multiple
+  entities:
+    - device_tracker.apple_iphone
+    - device_tracker.google_pixel
+    - device_tracker.octopi
+    - device_tracker.tablet_4g
 
 ### Stereo Groups ###
 # Stereo Volume Contols

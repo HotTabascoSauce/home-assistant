@@ -28,6 +28,15 @@ script.mute_on:
   icon: mdi:volume-off
 script.mute_off:
   icon: mdi:volume-mute
+script.tv_channel_down:
+  icon: mdi:minus
+script.tv_channel_up:
+  icon: mdi:plus
+script.tv_input:
+  icon: mdi:google-circles-group
+script.tv_power:
+  icon: mdi:power
+
 # Inputs
 input_slider.stereo_volume_slider:
   icon: mdi:volume-high
@@ -76,6 +85,24 @@ sensor.octoprint_current_state:
   icon: mdi:printer-3d
 sensor.octoprint_job_percentage:
   icon: mdi:compare
+sensor.yweather_humidity:
+  icon: mdi:water-percent
+  friendly_name: Reletive Humidity
+sensor.yweather_pressure:
+  icon: mdi:weather-windy-variant
+  friendly_name: Barometric Pressure
+sensor.yweather_temperature:
+  friendly_name: Temperature
+sensor.yweather_visibility:
+  friendly_name: Visibility
+sensor.yweather_wind_speed:
+  icon: mdi:weather-windy
+  friendly_name: Wind Speed
+sensor.yweather_condition:
+  friendly_name: Condition
+sensor.yweather_current:
+  friendly_name: Current Weather
+
 
 ### Organization Order ###
 # Group Orders
@@ -85,3 +112,20 @@ group.volume_control:
   order: "2"
 group.input_control:
   order: "3"
+
+
+### Hide Stuff ###
+sensor.octoprint_actual_bed_temp:
+  hidden: true
+sensor.octoprint_actual_tool0_temp:
+  hidden: true
+sensor.octoprint_target_bed_temp:
+  hidden: true
+sensor.octoprint_target_tool0_temp:
+  hidden: true
+sensor.octoprint_time_remaining:
+  hidden: true
+sensor.octoprint_time_elapsed:
+  hidden: true
+sensor.elephantboy91:
+  hidden: true
