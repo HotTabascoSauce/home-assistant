@@ -91,7 +91,7 @@
     entity_id: switch.3d_printer
 
 ### Security Automations ###
-# Disarm When someone gets home or on toggle
+# Disarm When someone gets home, in the morning or on toggle
 - id: set_to_disarm
   alias: Disarm iSmartAlarm
   initial_state: 'on'
@@ -105,6 +105,8 @@
   - platform: state
     entity_id: input_boolean.alarm_set_disarm
     to: 'on'
+  - platform: time
+    at: '07:15:00'
   action:
   - service: ifttt.trigger
     data:
@@ -114,7 +116,7 @@
   - service: input_boolean.turn_off
     entity_id: input_boolean.alarm_set_arm
   - service: input_boolean.turn_off
-    entity_id: input_boolean.alarm_set_home
+entity_id: input_boolean.alarm_set_home
 # Arm when no one is home
 - id: set_to_arm
   alias: Arm iSmartAlarm
