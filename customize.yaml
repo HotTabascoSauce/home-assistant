@@ -1,5 +1,3 @@
-### Icon Changes ###
-# Scripts
 script.volume_up:
   icon: mdi:volume-plus
 script.volume_down:
@@ -36,11 +34,8 @@ script.tv_input:
   icon: mdi:google-circles-group
 script.tv_power:
   icon: mdi:power
-
-# Inputs
 input_slider.stereo_volume_slider:
   icon: mdi:volume-high
-# Switch
 switch.bed_room_light:
   icon: mdi:lightbulb
 switch.living_room_light:
@@ -51,7 +46,6 @@ switch.printer_lights:
   icon: mdi:spotlight-beam
 switch.3d_printer:
   icon: mdi:printer-3d
-  # Automations
 automation.set_stereo_volume:
   icon: mdi:volume-medium
 automation.switch_to_chromecast:
@@ -68,7 +62,6 @@ automation.arm_ismartalarm:
   icon: mdi:checkbox-marked-circle
 automation.home_ismartalarm:
   icon: mdi:home-circle
-# Sensors
 sensor.hotend:
   icon: mdi:thermometer-lines
 sensor.hotend_target:
@@ -102,19 +95,20 @@ sensor.yweather_condition:
   friendly_name: Condition
 sensor.yweather_current:
   friendly_name: Current Weather
-
-
-### Organization Order ###
-# Group Orders
+device_tracker.apple_iphone:
+  icon: mdi:human-female
+device_tracker.google_pixel:
+  icon: mdi:human-male
+device_tracker.tablet_4g:
+  icon: mdi:tablet-android
+device_tracker.octpi:
+  icon: mdi:printer-3d
 group.power_control:
-  order: "1"
+  order: '1'
 group.volume_control:
-  order: "2"
+  order: '2'
 group.input_control:
-  order: "3"
-
-
-### Hide Stuff ###
+  order: '3'
 sensor.octoprint_actual_bed_temp:
   hidden: true
 sensor.octoprint_actual_tool0_temp:
@@ -129,3 +123,5 @@ sensor.octoprint_time_elapsed:
   hidden: true
 sensor.elephantboy91:
   hidden: true
+device_tracker.octopi:
+  icon: mdi:printer-3d

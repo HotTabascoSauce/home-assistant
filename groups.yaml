@@ -157,7 +157,7 @@ volume_control:
   entities:
     - script.volume_up
     - script.volume_down
-  #  - input_slider.stereo_volume_slider
+    - input_number.stereo_volume_slider
     - script.mute_on
     - script.mute_off
 # Stereo Power Contols

@@ -1,172 +1,179 @@
-# Automatically switch to Chromecast when it begins playing
+### Media Switching ###
+# Switch to Chrome Cast
 - id: switch_to_chromecast
   alias: Switch to Chromecast
   initial_state: 'on'
   trigger:
     platform: state
     entity_id: media_player.tv
-    to: 'playing'
+    to: playing
   action:
-    - service: script.power_on
-    - service: script.input_bd
-# Automatically switch to Kodi when it begins playing
+  - service: script.power_on
+  - service: script.input_bd
+# Switch to Living Room Kodi
 - id: switch_to_Kodi
   alias: Switch to Kodi
   initial_state: 'on'
   trigger:
     platform: state
     entity_id: media_player.living_room_kodi
-    to: 'playing'
+    to: playing
   action:
-    - service: script.power_on
-    - service: script.input_dvd
-# Adjust Stereo Volume with Slider
+  - service: script.power_on
+  - service: script.input_dvd
+
+### Volume Adjust ###
+# Stereo Volume
 - id: adjust_stereo_volume
   alias: Set Stereo Volume
   trigger:
     platform: state
-    entity_id: input_slider.stereo_volume_slider
+    entity_id: input_number.stereo_volume_slider
   action:
-    - service: shell_command.set_volume_level
-      data_template:
-        target_volume: '{{states.input_slider.stereo_volume_slider.state | int}}'
-        host: !secret stereo_ip
-        port: !secret stereo_port
-# Turn off the light when watching a Movie
+  - service: shell_command.set_volume_level
+    data_template:
+      target_volume: '{{states.input_number.stereo_volume_slider.state | int}}'
+      host: 192.168.1.21
+      port: 8102
+### Turn Off Lights ###
+# Turn the lights off when a movie starts playing
 - id: lights_out_movie
   alias: Turn Off the Light when a Movie Starts Playing
   initial_state: 'on'
   trigger:
-    - platform: state
-      entity_id: media_player.living_room_kodi
-      to: 'playing'
-    - platform: state
-      entity_id: media_player.tv
-      to: 'playing'
+  - platform: state
+    entity_id: media_player.living_room_kodi
+    to: playing
+  - platform: state
+    entity_id: media_player.tv
+    to: playing
   condition:
     condition: time
     after: '18:00:00'
   action:
-    - service: switch.turn_off
-      entity_id: switch.living_room_light
-# Turn On the lights when the movie is over or stopped
+  - service: switch.turn_off
+    entity_id: switch.living_room_light
+# Turn the lights on when a movie is finished or paused
 - id: lights_on_movie
   alias: Turn On the Light after a Movie
   initial_state: 'on'
   trigger:
-    - platform: state
-      entity_id: media_player.living_room_kodi
-      from: 'playing'
-    - platform: state
-      entity_id: media_player.tv
-      from: 'playing'
+  - platform: state
+    entity_id: media_player.living_room_kodi
+    from: playing
+  - platform: state
+    entity_id: media_player.tv
+    from: playing
   condition:
     condition: time
-    after: '18:00:00'
+    after: '19:00:00'
   action:
-    - service: switch.turn_on
-      entity_id: switch.living_room_light
+  - service: switch.turn_on
+    entity_id: switch.living_room_light
 
-# Shut down printer after completed printer
+### Octoprint Automations ###
+# Power off after completed print
 - id: shut_printer_off
   alias: Turn the Printer Off when Job Complete
-  initial_state: on
+  initial_state: true
   trigger:
-    - platform: state
-      entity_id: sensor.octoprint_current_state
-      from: 'Printing'
-      to: 'Operational'
+  - platform: state
+    entity_id: sensor.octoprint_current_state
+    from: Printing
+    to: Operational
   condition:
-    - condition: numeric_state
-      entity_id: sensor.octoprint_job_percentage
-      above: 99
+  - condition: numeric_state
+    entity_id: sensor.octoprint_job_percentage
+    above: 99
   action:
-    - delay: 00:05:00
-    - service: switch.turn_off
-      entity_id: switch.3d_printer
+  - delay: 00:05:00
+  - service: switch.turn_off
+    entity_id: switch.3d_printer
 
-
-### Home Security Control ###
-# Disarm Security
+### Security Automations ###
+# Disarm When someone gets home or on toggle
 - id: set_to_disarm
   alias: Disarm iSmartAlarm
   initial_state: 'on'
   trigger:
-    - platform: state
-      entity_id: device_tracker.apple_iphone
-      to: 'home'
-    - platform: state
-      entity_id: device_tracker.google_pixel
-      to: 'home'
-    - platform: state
-      entity_id: input_boolean.alarm_set_disarm
-      to: 'on'
+  - platform: state
+    entity_id: device_tracker.apple_iphone
+    to: home
+  - platform: state
+    entity_id: device_tracker.google_pixel
+    to: home
+  - platform: state
+    entity_id: input_boolean.alarm_set_disarm
+    to: 'on'
   action:
-    - service: ifttt.trigger
-      data: {"event": "set_disarm_mode"}
-    - service: input_boolean.turn_on
-      entity_id: input_boolean.alarm_set_disarm
-    - service: input_boolean.turn_off
-      entity_id: input_boolean.alarm_set_arm
-    - service: input_boolean.turn_off
-      entity_id: input_boolean.alarm_set_home
-# Arm Security
+  - service: ifttt.trigger
+    data:
+      event: set_disarm_mode
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.alarm_set_disarm
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.alarm_set_arm
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.alarm_set_home
+# Arm when no one is home
 - id: set_to_arm
   alias: Arm iSmartAlarm
   initial_state: 'on'
   trigger:
-    - platform: state
-      entity_id: device_tracker.apple_iphone
-      to: 'away'
-    - platform: state
-      entity_id: device_tracker.google_pixel
-      to: 'away'
-    - platform: state
-      entity_id: input_boolean.alarm_set_disarm
-      to: 'on'
+  - entity_id: device_tracker.apple_iphone
+    platform: state
+    to: not_home
+  - entity_id: device_tracker.google_pixel
+    platform: state
+    to: not_home
+  - entity_id: input_boolean.alarm_set_arm
+    platform: state
+    to: 'on'
   condition:
     condition: and
     conditions:
-    - condition: state
-      entity_id: device_tracker.apple_iphone
-      state: 'away'
-    - condition: state
-      entity_id: device_tracker.google_pixel
-      state: 'away'
+      - condition: state
+        entity_id: device_tracker.google_pixel
+        state: not_home
+      - condition: state
+        entity_id: device_tracker.apple_iphone
+        state: not_home
   action:
-    - service: ifttt.trigger
-      data: {"event": "set_disarm_mode"}
-    - service: input_boolean.turn_off
-      entity_id: input_boolean.alarm_set_disarm
-    - service: input_boolean.turn_on
-      entity_id: input_boolean.alarm_set_arm
-    - service: input_boolean.turn_off
-      entity_id: input_boolean.alarm_set_home
-# Home Mode Security
+  - data:
+      event: set_arm_mode
+    service: ifttt.trigger
+  - entity_id: input_boolean.alarm_set_disarm
+    service: input_boolean.turn_off
+  - entity_id: input_boolean.alarm_set_arm
+    service: input_boolean.turn_on
+  - entity_id: input_boolean.alarm_set_home
+    service: input_boolean.turn_off
+# Set home mode at night
 - id: set_to_home
   alias: Home iSmartAlarm
   initial_state: 'on'
   trigger:
-    - platform: time
-      at: '22:30:00'
-    - platform: state
-      entity_id: input_boolean.alarm_set_home
-      to: 'on'
+  - at: '22:30:00'
+    platform: time
+  - entity_id: input_boolean.alarm_set_home
+    platform: state
+    to: 'on'
   condition:
     condition: or
     conditions:
-    - condition: state
-      entity_id: device_tracker.apple_iphone
-      state: 'home'
-    - condition: state
-      entity_id: device_tracker.google_pixel
-      state: 'home'
+      - condition: state
+        entity_id: device_tracker.apple_iphone
+        state: home
+      - condition: state
+        entity_id: device_tracker.google_pixel
+        state: home
   action:
-    - service: ifttt.trigger
-      data: {"event": "set_disarm_mode"}
-    - service: input_boolean.turn_off
-      entity_id: input_boolean.alarm_set_disarm
-    - service: input_boolean.turn_off
-      entity_id: input_boolean.alarm_set_arm
-    - service: input_boolean.turn_on
-      entity_id: input_boolean.alarm_set_home
+  - data:
+      event: set_home_mode
+    service: ifttt.trigger
+  - entity_id: input_boolean.alarm_set_disarm
+    service: input_boolean.turn_off
+  - entity_id: input_boolean.alarm_set_arm
+    service: input_boolean.turn_off
+  - entity_id: input_boolean.alarm_set_home
+    service: input_boolean.turn_on

@@ -94,13 +94,13 @@ ifttt:
 # Shell commands
 shell_command: !include shell_commands.yaml
 # Volume Input Slider
-# input_slider:
-#   stereo_volume_slider:
-#     name: Stereo Volume
-#     initial: 25
-#     min: 0
-#     max: 70
-#     step: 1
+input_number:
+  stereo_volume_slider:
+    name: Stereo Volume
+    initial: 25
+    min: 0
+    max: 50
+    step: 1
 
 # Input Booleans
 input_boolean:
@@ -131,7 +131,7 @@ emulated_hue:
   listen_port: 80
   expose_by_default: true
 
-# Kodi Remote
+# Panel Remotes
 panel_iframe:
   lr_kodi:
     title: 'Living Room Kodi'
@@ -145,9 +145,17 @@ panel_iframe:
     title: 'OctoPrint'
     url: !secret octopi_url
     icon: mdi:printer-3d
+
 # OctoPrint
 octoprint:
   host: !secret octopi_host
   api_key: !secret octopi_api
   bed: true
   number_of_tools: 1
+
+# API Notify
+# notify:
+#   #name: 'octopi_connect'
+#   resource: 'http://192.168.1.8/api/files?apikey=22DA0304DDC84CF4AB82A9C33BF455C1'
+  #method: 'POST'
+  #message: {"command": "connect"}
