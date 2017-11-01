@@ -1,6 +1,7 @@
 # Home-Assistant
 Home Assistant on [Hassbian for Raspberry Pi](https://home-assistant.io/docs/installation/hassbian/installation/ "Installing Hassbian")
 
+![Home_Assistant_Frontend](https://github.com/HotTabascoSauce/home-assistant/blob/master/HA_Frontend.jpeg)
 
 ## List of Connected Devices
 |Name	|Software	|Hardware | Device Type|
