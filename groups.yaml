@@ -148,6 +148,52 @@ device_tracking_group:
     - device_tracker.octopi
     - device_tracker.tablet_4g
 
+# System Monitor
+system_monitor_group:
+  name: System Monitor
+  view: no
+  icon: mdi:chip
+  entities:
+    - sensor.disk_used_
+    - sensor.ram_available
+    - sensor.received_wlan0
+    - sensor.sent_wlan0
+    - sensor.since_last_boot
+    - sensor.cpu_temperature
+
+# Camera Group
+camera_group:
+  name: Camera Control
+  view: yes
+  icon: mdi:camera
+  entities:
+    - camera.octoprint_ip_camera
+    - camera.rooted_tablet
+    - group.camera_switches
+
+# Camera Switches
+camera_switches:
+  name: Camera Controls
+  view: no
+  icon: mdi:camera
+  entities:
+    - sensor.octoprint_ip_camera_audio_connections
+    - sensor.octoprint_ip_camera_light_level
+    - sensor.octoprint_ip_camera_motion
+    - sensor.rooted_tablet_audio_connections
+    - sensor.rooted_tablet_light_level
+    - sensor.rooted_tablet_motion
+    - switch.octoprint_ip_camera_focus
+    - switch.octoprint_ip_camera_night_vision
+    - switch.octoprint_ip_camera_overlay
+    - switch.octoprint_ip_camera_torch
+    - switch.octoprint_ip_camera_video_recording
+    - switch.rooted_tablet_focus
+    - switch.rooted_tablet_frontfacing_camera
+    - switch.rooted_tablet_night_vision
+    - switch.rooted_tablet_overlay
+    - switch.rooted_tablet_video_recording
+
 ### Stereo Groups ###
 # Stereo Volume Contols
 volume_control:

@@ -1,0 +1,29 @@
+- host: !secret tablet_camera_ip
+  port: 8080
+  name: Rooted Tablet
+  scan_interval: 10
+  sensors:
+    - audio_connections
+    - light
+    - motion
+  switches:
+    - ffc
+    - focus
+    - night_vision
+    - overlay
+    - video_recording
+
+- host: !secret octoprint_camera_ip
+  port: 8080
+  name: Octoprint IP Camera
+  scan_interval: 1
+  sensors:
+    - audio_connections
+    - light
+    - motion
+  switches:
+    - focus
+    - night_vision
+    - overlay
+    - torch
+    - video_recording

@@ -47,3 +47,21 @@
       friendly_name: 'Time Elapsed'
       unit_of_measurement: 'hours'
       value_template: "{{ (states.sensor.octoprint_time_elapsed.state |float / 3600) | round(2) }}"
+
+
+### System Monitor ###
+- platform: systemmonitor
+  resources:
+    - type: disk_use_percent
+      arg: /
+    - type: memory_free
+    - type: network_in
+      arg: wlan0
+    - type: network_out
+      arg: wlan0
+    - type: since_last_boot
+- platform: command_line
+  name: CPU Temperature
+  command: "cat /sys/class/thermal/thermal_zone0/temp"
+  unit_of_measurement: "°C"
+  value_template: '{{ value | multiply(0.001) }}'

@@ -25,6 +25,7 @@ script: !include scripts.yaml
 
 # Enables the frontend
 frontend:
+browser:
 
 # Device tracking
 device_tracker: !include device_tracking.yaml
@@ -52,7 +53,8 @@ http:
   api_password: !secret http_password
 
 # IP Cameras
-camera: !include cameras.yaml
+# camera: !include cameras.yaml
+android_ip_webcam: !include ip_webcams.yaml
 
 # Checks for available updates
 updater:

@@ -39,7 +39,7 @@
 # Turn the lights off when a movie starts playing
 - id: lights_out_movie
   alias: Turn Off the Light when a Movie Starts Playing
-  initial_state: 'on'
+  initial_state: 'off'
   trigger:
   - platform: state
     entity_id: media_player.living_room_kodi
@@ -70,7 +70,36 @@
   action:
   - service: switch.turn_on
     entity_id: switch.living_room_light
-
+# Turn on the Living room lights when someone gets home from work
+- id: lights_on_arrival
+  alias: Turn On the Light upon Arrival
+  initial_state: 'on'
+  trigger:
+  - platform: state
+    entity_id: device_tracker.apple_iphone
+    to: home
+  - platform: state
+    entity_id: device_tracker.google_pixel
+    to: home
+  condition:
+    condition: time
+    after: '17:00:00'
+    before: '22:00:00'
+    weekday:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
+  action:
+  - service: switch.turn_on
+    entity_id: switch.living_room_light
+  - service: switch.turn_on
+    entity_id: switch.tv_lights
+  - service: switch.turn_on
+    entity_id: switch.wax_melter
+  - service: switch.turn_on
+    entity_id: switch.printer_lights
 ### Octoprint Automations ###
 # Power off after completed print
 - id: shut_printer_off
@@ -116,7 +145,7 @@
   - service: input_boolean.turn_off
     entity_id: input_boolean.alarm_set_arm
   - service: input_boolean.turn_off
-entity_id: input_boolean.alarm_set_home
+    entity_id: input_boolean.alarm_set_home
 # Arm when no one is home
 - id: set_to_arm
   alias: Arm iSmartAlarm
