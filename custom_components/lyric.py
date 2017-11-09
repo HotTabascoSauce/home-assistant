@@ -1,6 +1,5 @@
 """
 Support for Honeywell Lyric devices.
-
 For more details about this component, please refer to the documentation at
 https://home-assistant.io/components/lyric/
 """
@@ -145,11 +144,11 @@ class LyricDevice(object):
         """Init Lyric devices."""
         self.hass = hass
         self.lyric = lyric
-        
+
         if not lyric.locations:
             _LOGGER.error("No locations found.")
             return
-        
+
         if CONF_LOCATIONS not in conf:
             self._location = [location.name for location in lyric.locations]
         else:
@@ -208,4 +207,4 @@ class LyricAuthenticateView(HomeAssistantView):
 
         return self.json_message('OK! All good. Got the respons! You can close'
                                  'this window now, and click << Continue >>'
-                                 'in the configurator.')
+'in the configurator.')

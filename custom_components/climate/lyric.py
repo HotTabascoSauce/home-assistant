@@ -1,6 +1,5 @@
 """
 Support for Honeywell Lyric thermostats.
-
 For more details about this platform, please refer to the documentation at
 https://home-assistant.io/components/climate.lyric/
 """
@@ -9,8 +8,8 @@ from os import path
 import voluptuous as vol
 import homeassistant.helpers.config_validation as cv
 """
-replace custom_components.lyric with 
-homeassistant.components.lyric when not 
+replace custom_components.lyric with
+homeassistant.components.lyric when not
 placed in custom components
 """
 from custom_components.lyric import DATA_LYRIC, CONF_FAN, CONF_AWAY_PERIODS
@@ -47,7 +46,7 @@ def setup_platform(hass, config, add_devices, discovery_info=None):
     if discovery_info is None:
         return
 
-    _LOGGER.debug("climate discovery_info: %s" % discovery_info)   
+    _LOGGER.debug("climate discovery_info: %s" % discovery_info)
     _LOGGER.debug("climate config: %s" % config)
 
     temp_unit = hass.config.units.temperature_unit
@@ -98,7 +97,7 @@ class LyricThermostat(ClimateDevice):
         self._away_periods = away_periods
 
         _LOGGER.debug("away periods: %s" % away_periods)
-       
+
         # Not all lyric devices support cooling and heating remove unused
         self._operation_list = [STATE_OFF]
 
@@ -284,7 +283,7 @@ class LyricThermostat(ClimateDevice):
     def max_temp(self):
         """Identify max_temp in Lyric API or defaults if not available."""
         return self._max_temperature
-    
+
     @property
     def device_state_attributes(self):
         """Return device specific state attributes."""
@@ -327,7 +326,7 @@ class LyricThermostat(ClimateDevice):
                     self._currentSchedulePeriod = self.device.currentSchedulePeriod['period']
                 if 'day' in  self.device.currentSchedulePeriod:
                     self._currentSchedulePeriod = self.device.currentSchedulePeriod['day']
-    
+
             if self.device.units == 'Celsius':
                 self._temperature_scale = TEMP_CELSIUS
             else:
