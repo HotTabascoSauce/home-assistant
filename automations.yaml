@@ -1,3 +1,5 @@
+#### Automations ####
+
 ### Media Switching ###
 # Switch to Chrome Cast
 - id: switch_to_chromecast
@@ -35,7 +37,8 @@
       target_volume: '{{states.input_number.stereo_volume_slider.state | int}}'
       host: 192.168.1.21
       port: 8102
-### Turn Off Lights ###
+
+### Sonoff Control ###
 # Turn the lights off when a movie starts playing
 - id: lights_out_movie
   alias: Turn Off the Light when a Movie Starts Playing
@@ -100,6 +103,17 @@
     entity_id: switch.wax_melter
   - service: switch.turn_on
     entity_id: switch.printer_lights
+# Fix Sonoff State on HA Boot
+- id: sonoff_state_sync
+  alias: Refresh MQTT Switches
+  trigger:
+    platform: homeassistant
+    event: start
+  action:
+    service: mqtt.publish
+    data:
+      topic: cmnd/sonoffs/POWER
+
 ### Octoprint Automations ###
 # Power off after completed print
 - id: shut_printer_off

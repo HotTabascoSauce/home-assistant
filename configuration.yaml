@@ -122,7 +122,7 @@ input_boolean:
 
 # MQTT Broker
 mqtt: # Default Settings Username = homeassistant and Password = !secret api_password
-  broker: !secret host_address
+  broker: !secret mqtt_address
   port: !secret mqtt_port
   username: !secret mqtt_username
   password: !secret mqtt_password
@@ -155,9 +155,3 @@ octoprint:
   bed: true
   number_of_tools: 1
 
-# API Notify
-# notify:
-#   #name: 'octopi_connect'
-#   resource: 'http://192.168.1.8/api/files?apikey=22DA0304DDC84CF4AB82A9C33BF455C1'
-  #method: 'POST'
-  #message: {"command": "connect"}

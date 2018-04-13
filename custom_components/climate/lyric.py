@@ -16,12 +16,13 @@ from custom_components.lyric import DATA_LYRIC, CONF_FAN, CONF_AWAY_PERIODS
 from homeassistant.components.climate import (
     ATTR_TARGET_TEMP_HIGH, ATTR_TARGET_TEMP_LOW, DOMAIN,
     ClimateDevice, PLATFORM_SCHEMA, STATE_AUTO,
-    STATE_COOL, STATE_HEAT)
+    STATE_COOL, STATE_HEAT, SUPPORT_TARGET_TEMPERATURE,
+    SUPPORT_TARGET_TEMPERATURE_HIGH, SUPPORT_TARGET_TEMPERATURE_LOW,
+    SUPPORT_OPERATION_MODE, SUPPORT_AWAY_MODE, SUPPORT_FAN_MODE)
 from homeassistant.const import (
     ATTR_ENTITY_ID, ATTR_TEMPERATURE, CONF_SCAN_INTERVAL,
     STATE_ON, STATE_OFF, STATE_UNKNOWN, TEMP_CELSIUS,
     TEMP_FAHRENHEIT)
-from homeassistant.config import load_yaml_config_file
 
 DEPENDENCIES = ['lyric']
 _LOGGER = logging.getLogger(__name__)
@@ -30,6 +31,10 @@ SERVICE_RESUME_PROGRAM = 'lyric_resume_program'
 SERVICE_RESET_AWAY = 'lyric_reset_away'
 STATE_HEAT_COOL = 'heat-cool'
 HOLD_NO_HOLD = 'NoHold'
+
+SUPPORT_FLAGS = (SUPPORT_TARGET_TEMPERATURE | SUPPORT_TARGET_TEMPERATURE_HIGH |
+                 SUPPORT_TARGET_TEMPERATURE_LOW | SUPPORT_OPERATION_MODE |
+                 SUPPORT_AWAY_MODE | SUPPORT_FAN_MODE)
 
 PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
     vol.Optional(CONF_SCAN_INTERVAL):
@@ -76,12 +81,8 @@ def setup_platform(hass, config, add_devices, discovery_info=None):
             thermostat.set_hold_mode(HOLD_NO_HOLD)
             thermostat.away_override = False
 
-    descriptions = load_yaml_config_file(
-        path.join(path.dirname(__file__), 'services.yaml'))
-
     hass.services.register(
         DOMAIN, SERVICE_RESUME_PROGRAM, resume_program_service,
-        descriptions.get(SERVICE_RESUME_PROGRAM),
         schema=RESUME_PROGRAM_SCHEMA)
 
 class LyricThermostat(ClimateDevice):
@@ -115,8 +116,8 @@ class LyricThermostat(ClimateDevice):
         self._has_fan = has_fan
         if (self._has_fan):
             self._fan_list = self.device.settings["fan"]["allowedModes"]
-        # else:
-        #    self._fan_list = None
+        else:
+           self._fan_list = None
 
         # data attributes
         self._away = None
@@ -147,6 +148,11 @@ class LyricThermostat(ClimateDevice):
     def name(self):
         """Return the name of the lyric, if any."""
         return self._name
+
+    @property
+    def supported_features(self):
+        """Return the list of supported features."""
+        return SUPPORT_FLAGS
 
     @property
     def temperature_unit(self):
